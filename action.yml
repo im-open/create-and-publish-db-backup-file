@@ -1,22 +1,44 @@
-name: 'Composite Run Steps Action Template'
+name: Create and publish backup files
 
-description: 'Add description here'
+description: Creates and publishes backup files for a database
 
 inputs:
-  input-1:
-    description: 'Add a description here'
+  db-server-name:
+    description: The name of the database server from which to get the backup.
     required: true
-
-outputs:
-  output-1:
-    description: 'Add description here'
-    value: '${{ steps.step_1.outputs.world }}'
+  db-name:
+    description: The name of the database to back up.
+    required: true
+  backup-path:
+    description: The path to where the backup file should go.
+    required: true
+  backup-name:
+    description: The full name of the backup file, including file extension.
+    required: true
+  version:
+    description: The version number for the backup.
+    required: true
+  nuget-source-url:
+    description: The url to the nuget repository where the backup file will be pushed.
+    required: true
+  nuget-api-key:
+    description: The PAT for the nuget repository where the backup file will be published.
+    required: true
+  authors:
+    description: A string containing the names of the authors of the backup file. There is no required formatting for this string.
+    required: false
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Step 1
-      id: step_1
-      shell: bash
+    - name: Create and publish bak file
+      shell: pwsh
       run: |
-        echo "::set-output name=hello::world"
+        ${{ github.action_path }}/src/createPublishBackupFiles.ps1 -DbServer "${{ inputs.db-server-name }}" `
+        -DbName "${{ inputs.db-name }}" `
+        -BackupPath "${{ inputs.backup-path }}" `
+        -BackupName "${{ inputs.backup-name }}" `
+        -Version "${{ inputs.version }}" `
+        -NugetSourceUrl "${{ inputs.nuget-source-url }}" `
+        -NugetApiKey "${{ inputs.nuget-api-key }}" `
+        -Authors "${{ inputs.authors }}"
