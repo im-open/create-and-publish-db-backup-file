@@ -42,7 +42,7 @@ jobs:
           db-server: localhost
           db-name: LocalDb
           backup-path: "./"
-          backup-name: "LocalDb.back"
+          backup-name: "LocalDb.bak"
           version: "1.0.${{ github.run_number }}"
           nuget-source-url: "https://github.com/my-org/my-repo" # A GitHub packages url
           nuget-api-key: "${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }}" # A token that has access to publish packages
