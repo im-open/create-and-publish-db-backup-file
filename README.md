@@ -2,6 +2,8 @@
 
 This GitHub Action will create a backup file for the specified database and publish it to a nuget repository.  
 
+## Index
+
 - [Inputs](#inputs)
 - [Example](#example)
 - [Contributing](#contributing)
