@@ -33,7 +33,7 @@ $packageManifest = @"
 $targetNugetExe = "$PSScriptRoot\.nuget\nuget.exe"
 $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
-if(![System.IO.File]::Exists($targetNugetExe)) {
+if (![System.IO.File]::Exists($targetNugetExe)) {
     Write-Host "Downloading nuget.exe"
     New-Item -ItemType Directory -Path "$PSScriptRoot\.nuget"
     Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
@@ -50,7 +50,8 @@ Remove-Item -Path ".\$BackupName.nuspec"
 
 $backupFileName = "$BackupName.$Version.nupkg"
 
-& $targetNugetExe push ".\$backupFileName" -ApiKey $NugetApiKey -Source $NugetSourceUrl -NonInteractive
+# & $targetNugetExe push ".\$backupFileName" -ApiKey $NugetApiKey -Source $NugetSourceUrl -NonInteractive
+& dotnet nuget push "./$backupFileName" -k "$NugetApiKey" -s $NugetSourceUrl
     
 if ($false -eq $?) {
     Remove-Item -Path ".\$backupFileName"
