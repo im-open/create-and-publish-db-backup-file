@@ -30,15 +30,15 @@ jobs:
   job1:
     runs-on: [self-hosted]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install Flyway
-        uses: im-open/setup-flyway@v1.0.1
+        uses: im-open/setup-flyway@v1.1.0
         with:
           version: 7.2.0
 
       - name: Build Database
-        uses: im-open/build-database-ci-action@v2.0.1
+        uses: im-open/build-database-ci-action@v3.0.3
         with:
           db-server-name: localhost
           db-name: LocalDB
