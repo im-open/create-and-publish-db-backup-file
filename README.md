@@ -7,11 +7,12 @@ This GitHub Action will create a backup file for the specified database and publ
 - [Inputs](#inputs)
 - [Example](#example)
 - [Contributing](#contributing)
-	- [Incrementing the Version](#incrementing-the-version)
+  - [Incrementing the Version](#incrementing-the-version)
 - [Code of Conduct](#code-of-conduct)
-- [License](#license)    
+- [License](#license)
 
 ## Inputs
+
 | Parameter          | Is Required | Description                                                                                                       |
 | ------------------ | ----------- | ----------------------------------------------------------------------------------------------------------------- |
 | `db-server-name`   | true        | The name of the database server from which to get the backup.                                                     |
@@ -33,19 +34,19 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Flyway
-        uses: im-open/setup-flyway@v1.1.0
+        uses: im-open/setup-flyway@v1
         with:
           version: 7.2.0
 
       - name: Build Database
-        uses: im-open/build-database-ci-action@v3.0.3
+        uses: im-open/build-database-ci-action@v3
         with:
           db-server-name: localhost
           db-name: LocalDB
           drop-db-after-build: false
 
       - name: Create and Publish Backup File
-        uses: im-open/create-and-publish-db-backup-file@v1.0.2
+        uses: im-open/create-and-publish-db-backup-file@v1.0.3
         with:
           db-server: localhost
           db-name: LocalDb
