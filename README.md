@@ -4,12 +4,14 @@ This GitHub Action will create a backup file for the specified database and publ
 
 ## Index
 
-- [Inputs](#inputs)
-- [Example](#example)
-- [Contributing](#contributing)
-  - [Incrementing the Version](#incrementing-the-version)
-- [Code of Conduct](#code-of-conduct)
-- [License](#license)
+- [create-and-publish-db-backup-file](#create-and-publish-db-backup-file)
+  - [Index](#index)
+  - [Inputs](#inputs)
+  - [Example](#example)
+  - [Contributing](#contributing)
+    - [Incrementing the Version](#incrementing-the-version)
+  - [Code of Conduct](#code-of-conduct)
+  - [License](#license)
 
 ## Inputs
 
@@ -23,6 +25,7 @@ This GitHub Action will create a backup file for the specified database and publ
 | `nuget-source-url` | true        | The url to the nuget repository where the backup file will be pushed.                                             |
 | `nuget-api-key`    | true        | The PAT for the nuget repository where the backup file will be published.                                         |
 | `authors`          | false       | A string containing the names of the authors of the backup file. There is no required formatting for this string. |
+| `repository-url`   | false       | Use when publishing to GitHub Packages. The url to the repository which should house the published packages.      |
 
 ## Example
 
@@ -56,6 +59,7 @@ jobs:
           nuget-source-url: "https://github.com/my-org/my-repo" # A GitHub packages url
           nuget-api-key: "${{ secrets.MY_GH_PACKAGES_ACCESS_TOKEN }}" # A token that has access to publish packages
           authors: "My-Team"
+          repository-url: "git://github.com/my-org/my-repo.git" # The URL to the repository.
 ```
 
 ## Contributing
