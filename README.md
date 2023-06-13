@@ -49,7 +49,7 @@ jobs:
           drop-db-after-build: false
 
       - name: Create and Publish Backup File
-        uses: im-open/create-and-publish-db-backup-file@v1.0.3
+        uses: im-open/create-and-publish-db-backup-file@v1.1.0
         with:
           db-server: localhost
           db-name: LocalDb
