@@ -27,6 +27,9 @@ inputs:
   authors:
     description: A string containing the names of the authors of the backup file. There is no required formatting for this string.
     required: false
+  repository-url:
+    description: Use when publishing to GitHub Packages. The url to the repository which should house the published packages.
+    required: false
 
 runs:
   using: "composite"
@@ -41,4 +44,5 @@ runs:
         -Version "${{ inputs.version }}" `
         -NugetSourceUrl "${{ inputs.nuget-source-url }}" `
         -NugetApiKey "${{ inputs.nuget-api-key }}" `
-        -Authors "${{ inputs.authors }}"
+        -Authors "${{ inputs.authors }}" `
+        -RepositoryUrl "${{ inputs.repository-url }}"

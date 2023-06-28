@@ -6,7 +6,8 @@ param (
     [string]$Version,
     [string]$NugetSourceUrl,
     [string]$NugetApiKey,
-    [string]$Authors
+    [string]$Authors,
+    [string]$RepositoryUrl
 )
 
 $fullPath = (Get-Item -Path $BackupPath).FullName # Use absolute path
@@ -23,6 +24,7 @@ $packageManifest = @"
     <version>$Version</version>
     <description>Encapsulates a single backup file called $BackupName</description>
     <authors>$Authors</authors>
+    <repository url="$RepositoryUrl"></repository>
 </metadata>
 <files>
     <file src="$backupPathAndName"/>
@@ -33,7 +35,7 @@ $packageManifest = @"
 $targetNugetExe = "$PSScriptRoot\.nuget\nuget.exe"
 $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 
-if(![System.IO.File]::Exists($targetNugetExe)) {
+if (![System.IO.File]::Exists($targetNugetExe)) {
     Write-Host "Downloading nuget.exe"
     New-Item -ItemType Directory -Path "$PSScriptRoot\.nuget"
     Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
